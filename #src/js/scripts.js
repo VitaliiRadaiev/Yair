@@ -10,8 +10,8 @@ window.addEventListener('load', function () {
 	let logo = document.querySelector('.logo');
 	if(logo) {
 		setTimeout(() => {
-			logo.classList.add('anime-is-end')
-		}, 1000);
+			logo.classList.add('anime-is-end');
+		}, 1700)
 	}
 
 });

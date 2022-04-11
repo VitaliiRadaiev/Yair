@@ -269,20 +269,71 @@ h3 > a {
 }
 
 // logo
-
 .is-load {
-    & .logo {
-        & .logo__inner-1 {
-            width: 200px;
-            transition: all .3s ease 0.6s;
+    .logo:not(.anime-is-end) {
+        & .logo__inner {
+            animation: innerAnim 1s ease 0.6s forwards;
         }
 
         & .logo__text {
-            transform: translate(-50%, -50%) scale(1);
-            transition: all .3s ease 0.6s;
+            animation: textAnim 1s ease 0.6s forwards;
+        }
+
+        & .logo__text span {
+            animation: textSpanAnim 1s ease 0.6s forwards;
         }
     }
 }
+
+@keyframes innerAnim {
+    0% {
+        left: calc(50% - 31px);
+        width: 62px;
+    }
+    33% {
+        left: calc(50% - 31px);
+        width: 62px;
+    }
+    66% {
+        left: 0;
+        width: 62px;
+    }
+    100% {
+        left: 0;
+        width: 200px;
+    }
+}
+
+@keyframes textSpanAnim {
+    0% {
+        opacity: 0;
+    }
+    33% {
+        opacity: 0;
+    }
+    66% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes textAnim {
+    0% {
+        left: 16px;
+    }
+    33% {
+        left: 16px;
+    }
+    66% {
+        left: 16px;
+    }
+    100% {
+        left: 21px;
+    }
+}
+
 .logo {
     width: 200px;
     height: 62px;
@@ -294,47 +345,99 @@ h3 > a {
     transition: all .3s ease;
 
     &.anime-is-end {
-        & .logo__inner-1 {
-            transition: all .3s ease !important; 
+        & .logo__inner {
+            width: 200px;
+            left: 0; 
         }
 
         & .logo__text {
-            transition: all .3s ease !important;
+            left: 21px;
+
+            & span {
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            & .logo__inner {
+                animation: innerHoverAnim 1s ease;
+            }
+
+            & .logo__text {
+                animation: textHoverAnim 1s ease;
+            }
+    
+            & .logo__text span {
+                animation: textSpanHoverAnim 1s ease;
+            }
+        }
+
+        @keyframes innerHoverAnim {
+            0% {
+                width: 200px;
+                left: 0;
+            }
+            33% {
+                width: 62px;
+                left: calc(50% - 31px);
+            }
+            66% {
+                width: 62px;
+                left: 0
+            }
+            100% {
+                width: 200px;
+                left: 0;
+            }
+        }
+
+        @keyframes textHoverAnim {
+            0% {
+                left: 21px;
+            }
+            33% {
+                left: 16px;
+            }
+            66% {
+                left: 16px;
+            }
+            100% {
+                left: 21px;
+            }
+        }
+
+        @keyframes textSpanHoverAnim {
+            0% {
+                opacity: 1;
+            }
+            33% {
+                opacity: 0;
+            }
+            66% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     }
 
-    &:hover {
-        & .logo__inner-1 {
-            width: 220px;
-            transition: all .3s ease; 
-        }
-
-        & .logo__text {
-            transition: all .3s ease;
-            transform: translate(-50%, -50%) scale(1.06);
-        }
-    }
-
-    &__inner-1 {
-        width: 35px;
+    &__inner {
+        width: 62px;
         height: 62px;
         position: absolute;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        left: calc(50% - 31px);
+        transform: translate(0%, -50%);
         transition: all .3s ease;
+        border: 1px solid #000;
     }
 
     &__inner-2 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        height: 100%;
         width: 100%;
-        height: 0;
-        padding-bottom: 30%;
-        border: 1px solid #000;
-        transition: all .3s ease;
+        overflow: hidden;
+        position: relative;
     }
 
     &__square {
@@ -371,11 +474,17 @@ h3 > a {
         z-index: 1;
         text-transform: uppercase;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
+        left: 16px;
+        //left: 21px;
+        //left: 16px;
+        transform: translate(0%, -50%);
         text-align: center;
         font-size: 20px;
-        transition: all .3s ease;
+        transition: transform .6s ease;
 
+        & span {
+            transition: all .3s ease;
+            opacity: 0;
+        }
     }
 }
